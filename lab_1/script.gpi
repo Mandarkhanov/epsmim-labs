@@ -1,0 +1,29 @@
+input_file = ARG1
+output_prefix = ARG2
+nx = ARG3
+ny = ARG4
+
+if (input_file eq "") {
+    print "Usage: gnuplot -c script.gp <input_file> <output_prefix> <nx> <xy>"
+    exit
+}
+
+output_file = output_prefix . ".png"
+
+set terminal png
+
+set output output_file
+
+set title "Matrix from ".input_file
+
+set xlabel "X"
+set ylabel "Y"
+
+set xrange[-1:nx]
+set yrange[-1:ny]
+
+set palette defined ( 0 "blue", 1 "red" )
+
+set size ratio 1
+
+plot input_file matrix with image
